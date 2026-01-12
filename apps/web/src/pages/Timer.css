@@ -1,0 +1,333 @@
+.timer-page {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: var(--space-2xl);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-2xl);
+  color: var(--text-secondary);
+}
+
+.timer-error {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid var(--accent-red);
+  color: var(--accent-red);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+/* Timer Display */
+.timer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-xl);
+}
+
+.timer-display {
+  margin-bottom: var(--space-xl);
+}
+
+.timer-ring {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.timer-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-ring-bg {
+  fill: none;
+  stroke: var(--bg-tertiary);
+  stroke-width: 4;
+}
+
+.timer-ring-progress {
+  fill: none;
+  stroke: var(--accent-green);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.timer-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-time {
+  display: flex;
+  align-items: center;
+  font-size: 3.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.time-segment {
+  min-width: 80px;
+  text-align: center;
+}
+
+.time-separator {
+  color: var(--text-muted);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.timer-display.active .timer-time {
+  color: var(--accent-green);
+  text-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+}
+
+.timer-display.active .timer-ring-bg {
+  stroke: var(--accent-green-bg);
+}
+
+.timer-status {
+  margin-top: var(--space-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.timer-display.active .timer-status {
+  color: var(--accent-green);
+}
+
+/* Timer Notes */
+.timer-notes {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: var(--space-xl);
+}
+
+.timer-notes label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.timer-notes textarea {
+  width: 100%;
+  resize: none;
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+}
+
+.timer-notes textarea:focus {
+  border-color: var(--accent-green);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* Timer Controls */
+.timer-controls {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.timer-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-2xl);
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-normal);
+}
+
+.timer-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.timer-btn.start {
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-green-hover));
+  color: white;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+}
+
+.timer-btn.start:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
+}
+
+.timer-btn.stop {
+  background: linear-gradient(135deg, var(--accent-red), #dc2626);
+  color: white;
+  box-shadow: 0 4px 20px rgba(248, 113, 113, 0.4);
+}
+
+.timer-btn.stop:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(248, 113, 113, 0.5);
+}
+
+/* Sessions Section */
+.sessions-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  height: fit-content;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.sessions-section h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--space-lg);
+  color: var(--text-primary);
+}
+
+.no-sessions {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--text-muted);
+}
+
+.no-sessions-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.session-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  transition: all var(--transition-fast);
+}
+
+.session-card:hover {
+  border-color: var(--accent-green);
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.session-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.session-delete {
+  background: none;
+  color: var(--text-muted);
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.session-delete:hover {
+  color: var(--accent-red);
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.session-delete svg {
+  width: 16px;
+  height: 16px;
+}
+
+.session-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.session-time-range {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+}
+
+.session-start, .session-end {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.session-arrow {
+  color: var(--text-muted);
+}
+
+.session-duration {
+  font-weight: 600;
+  color: var(--accent-green);
+  font-size: 0.9375rem;
+}
+
+.session-notes {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border-muted);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .timer-page {
+    grid-template-columns: 1fr;
+  }
+
+  .sessions-section {
+    max-height: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer-ring {
+    width: 280px;
+    height: 280px;
+  }
+
+  .timer-time {
+    font-size: 2.5rem;
+  }
+
+  .time-segment {
+    min-width: 60px;
+  }
+
+  .timer-btn {
+    padding: var(--space-md) var(--space-xl);
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,24 @@
+# Development docker-compose for local development
+# This only starts the database, run apps locally with `bun run dev`
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: time_tracker_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: time_tracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d time_tracker" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
